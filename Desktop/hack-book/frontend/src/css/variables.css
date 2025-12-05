@@ -1,0 +1,26 @@
+/* frontend/src/css/variables.css */
+
+:root {
+  /* Primary Colors */
+  --color-primary: #B279A4;
+  --color-primary-dark: #A56994;
+  --color-primary-darker: #8C5984;
+
+  /* Secondary Colors */
+  --color-secondary: #79B2A4;
+  --color-secondary-dark: #69A294;
+  --color-secondary-darker: #598284;
+
+  /* Neutral Colors */
+  --color-text: #4A4A4A;
+  --color-text-light: #6B7280;
+  --color-background: #FFFFFF;
+  --color-surface: #F8F9FA;
+  --color-border: #E2E8F0;
+
+  /* Semantic Colors */
+  --color-success: #38A169;
+  --color-warning: #D69E2E;
+  --color-error: #E53E3E;
+  --color-info: #3182CE;
+}

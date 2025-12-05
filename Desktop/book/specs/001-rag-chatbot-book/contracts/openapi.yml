@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: RAG Chatbot API
+  description: API for "The Book of AI-Driven Development" chatbot.
+  version: 1.0.0
+
+paths:
+  /chat:
+    post:
+      summary: Chat with Full Book Context
+      description: Receives a user query and returns an answer based on the entire content of the book.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+  /chat-with-selection:
+    post:
+      summary: Chat with Selected Text Context
+      description: Receives a user query and a specific text snippet, returning an answer based only on that snippet.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectedContextChatRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+
+components:
+  schemas:
+    ChatRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The user's question in natural language.
+          example: "What is spec-driven development?"
+      required:
+        - query
+
+    SelectedContextChatRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The user's question in natural language.
+          example: "What does this paragraph say about methodology?"
+        context:
+          type: string
+          description: The specific snippet of text selected by the user.
+          example: "Spec-driven development is a methodology where a detailed specification is written before any code."
+      required:
+        - query
+        - context
+
+    ChatResponse:
+      type: object
+      properties:
+        answer:
+          type: string
+          description: The chatbot's generated answer.
+          example: "Spec-driven development is a methodology that prioritizes writing a detailed specification before implementation..."
+        sources:
+          type: array
+          items:
+            type: string
+          description: A list of source identifiers from the text chunks used to generate the answer.
+          example: ["Chapter 1: Introduction", "Chapter 1: Core Principles"]

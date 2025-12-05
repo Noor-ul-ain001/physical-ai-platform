@@ -1,0 +1,165 @@
+openapi: 3.0.0
+info:
+  title: Gemini Robotics Textbook API
+  version: 1.0.0
+  description: API for the Gemini-Powered Physical AI & Humanoid Robotics Textbook.
+
+paths:
+  /api/gemini/chat:
+    post:
+      summary: Text-based chat with Gemini
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                context:
+                  type: array
+                  items:
+                    type: string
+                temperature:
+                  type: number
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                  usage:
+                    type: object
+                    properties:
+                      tokens:
+                        type: integer
+                  sources:
+                    type: array
+                    items:
+                      type: string
+
+  /api/gemini/transcribe:
+    post:
+      summary: Audio transcription
+      requestBody:
+        required: true
+        content:
+          audio/wav:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Successful transcription
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  text:
+                    type: string
+                  confidence:
+                    type: number
+                  language:
+                    type: string
+
+  /api/gemini/synthesize:
+    post:
+      summary: Text-to-speech conversion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                voice:
+                  type: string
+      responses:
+        '200':
+          description: Successful synthesis
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+
+  /api/auth/signup:
+    post:
+      summary: User signup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                background_profile:
+                  type: object # Refer to UserBackground schema if defined
+      responses:
+        '200':
+          description: Signup successful
+          content:
+            application/json:
+              schema:
+                type: object # Refer to User and Session schema
+
+  /api/auth/signin:
+    post:
+      summary: User signin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Signin successful
+          content:
+            application/json:
+              schema:
+                type: object # Refer to User and Session schema
+
+  /api/auth/profile:
+    get:
+      summary: Get user profile
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object # Refer to UserProfile schema
+    put:
+      summary: Update user profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object # Refer to UserProfile schema
+      responses:
+        '200':
+          description: Update successful
+
+  /ws/voice:
+    # This is a WebSocket endpoint and is not described by OpenAPI.
+    # See plan.md for protocol details.
+    x-websocket: true
