@@ -1,0 +1,147 @@
+.progressTracker {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.header h3 {
+  margin: 0;
+  color: var(--ifm-color-primary);
+}
+
+.overallProgress {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.percentage {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: var(--robotic-blue);
+}
+
+.statusText {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.progressBar {
+  height: 0.75rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--robotic-blue) 0%, var(--circuit-green) 100%);
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.chapterList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chapterItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.chapterItem:last-child {
+  border-bottom: none;
+}
+
+.chapterInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.chapterId {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.timeSpent {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.chapterProgress {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 120px;
+  margin-left: 1rem;
+}
+
+.chapterProgressFill {
+  flex: 1;
+  height: 0.5rem;
+  background-color: #d1d5db;
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+  min-width: 40px;
+}
+
+.chapterProgressFill.completed {
+  background-color: var(--circuit-green);
+}
+
+.chapterPercentage {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6b7280;
+  min-width: 30px;
+  text-align: right;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .progressTracker {
+    padding: 1rem;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .overallProgress {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .chapterItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .chapterProgress {
+    width: 100%;
+  }
+}

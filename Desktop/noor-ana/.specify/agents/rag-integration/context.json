@@ -1,0 +1,72 @@
+{
+  "agentId": "rag-integration",
+  "version": "1.0.0",
+  "status": "active",
+  "created": "2025-12-15",
+  "lastUpdated": "2025-12-15",
+  "configuration": {
+    "defaultEmbeddingModel": "text-embedding-3-small",
+    "defaultChunkSize": 512,
+    "defaultChunkOverlap": 50,
+    "defaultTopK": 5,
+    "defaultSimilarityThreshold": 0.7,
+    "hallucinationTolerance": "zero",
+    "citationRequired": true
+  },
+  "qualityGates": {
+    "hallucinationRate": 0.0,
+    "citationAccuracy": 1.0,
+    "p95Latency": 2000,
+    "testCoverage": 0.9,
+    "securityReview": true
+  },
+  "metrics": {
+    "usageCount": 0,
+    "successRate": null,
+    "averageLatency": null,
+    "hallucinationDetections": 0,
+    "userSatisfaction": null
+  },
+  "dependencies": {
+    "fastapi": ">=0.100.0",
+    "qdrant-client": ">=1.7.0",
+    "openai": ">=1.0.0",
+    "psycopg2-binary": ">=2.9.0",
+    "pydantic": ">=2.0.0",
+    "python": ">=3.11"
+  },
+  "infrastructure": {
+    "vectorDB": {
+      "provider": "qdrant-cloud",
+      "tier": "free",
+      "limits": {
+        "storage": "1GB",
+        "vectors": 100000
+      }
+    },
+    "chatHistoryDB": {
+      "provider": "neon-postgres",
+      "tier": "free",
+      "retentionPolicy": "7 days for anonymous, indefinite for authenticated"
+    },
+    "backend": {
+      "framework": "fastapi",
+      "deployment": "vercel | railway | fly.io",
+      "python": "3.11+"
+    }
+  },
+  "knowledgeSources": [
+    "Qdrant documentation",
+    "FastAPI best practices",
+    "RAG system design patterns",
+    "OpenAI Agents SDK",
+    "Project constitution (Article III)"
+  ],
+  "testingStrategy": {
+    "hallucinationTests": "mandatory",
+    "latencyBenchmarks": "required",
+    "citationValidation": "required",
+    "integrationTests": "full-pipeline",
+    "continuousTesting": "pre-deployment"
+  }
+}

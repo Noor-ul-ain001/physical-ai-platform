@@ -1,0 +1,40 @@
+{
+  "agentId": "ros2-code",
+  "version": "0.1.0",
+  "status": "draft",
+  "created": "2025-12-15",
+  "lastUpdated": "2025-12-15",
+  "configuration": {
+    "defaultLanguage": "python",
+    "ros2Version": "humble",
+    "preferredPatterns": ["lifecycle nodes", "composable nodes"],
+    "linting": ["flake8", "cpplint"]
+  },
+  "qualityGates": {
+    "syntaxValid": true,
+    "executable": true,
+    "bestPractices": "enforced",
+    "documented": "comprehensive"
+  },
+  "developmentStatus": {
+    "promptComplete": false,
+    "skillsDefined": false,
+    "testsCreated": false,
+    "realWorldValidation": false
+  },
+  "nextSteps": [
+    "Complete prompt.md with ROS 2 code generation protocol",
+    "Define all skills (nodes, launch files, messages) with examples",
+    "Create test scenarios covering all node types",
+    "Implement code linting and validation",
+    "Test with ROS 2 Humble installation",
+    "Validate against official ROS 2 tutorials",
+    "Update status to 'active' after 10+ successful generations"
+  ],
+  "dependencies": {
+    "ros2": "humble | iron | jazzy",
+    "python": ">=3.10",
+    "rclpy": "latest",
+    "colcon": "latest"
+  }
+}

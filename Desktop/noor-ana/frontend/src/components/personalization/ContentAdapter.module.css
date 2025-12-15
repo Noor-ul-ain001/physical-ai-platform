@@ -1,0 +1,47 @@
+.contentAdapter {
+  /* Base styles for the content adapter */
+}
+
+.personalizedSection {
+  /* Styles for sections that have been personalized */
+  border-left: 3px solid var(--circuit-green);
+  padding-left: 1rem;
+  margin: 1rem 0;
+}
+
+/* Animation for when content is being personalized */
+.personalizedSection::before {
+  content: "âœ¨";
+  margin-right: 0.5rem;
+}
+
+/* Different styles based on code complexity */
+.codeSimple {
+  font-size: 0.9em;
+  color: #4a5568;
+}
+
+.codeAdvanced {
+  font-size: 1em;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+/* Visual indication for hardware-specific content */
+.hardwareSpecific {
+  background-color: rgba(37, 99, 235, 0.05);
+  border: 1px dashed var(--robotic-blue);
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+/* Animation for when content is being adapted */
+@keyframes personalizeAnimation {
+  from { background-color: rgba(167, 139, 250, 0.1); }
+  to { background-color: transparent; }
+}
+
+.personalizing {
+  animation: personalizeAnimation 1s ease-in-out;
+}

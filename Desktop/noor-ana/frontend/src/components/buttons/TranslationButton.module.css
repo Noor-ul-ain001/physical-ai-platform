@@ -1,0 +1,75 @@
+.buttonContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.translate {
+  background: linear-gradient(90deg, var(--circuit-green) 0%, var(--robotic-blue) 100%);
+  color: white;
+}
+
+.translate:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.reset {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+
+.reset:hover {
+  background-color: #cbd5e0;
+}
+
+.icon {
+  font-size: 1rem;
+}
+
+.errorNotification {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background-color: #fed7d7;
+  color: #c53030;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  z-index: 1000;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.errorNotification::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  transform: rotate(45deg);
+  border: 5px solid transparent;
+  border-top-color: #fed7d7;
+  border-left-color: #fed7d7;
+}
+
+@media (max-width: 768px) {
+  .button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .errorNotification {
+    font-size: 0.75rem;
+  }
+}

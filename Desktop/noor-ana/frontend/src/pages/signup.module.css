@@ -1,0 +1,82 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.stepContainer {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stepContainer h1 {
+  margin-top: 0;
+  color: var(--ifm-color-primary);
+}
+
+.subtitle {
+  color: #718096;
+  margin-bottom: 2rem;
+}
+
+.loginLink {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.loginLink a {
+  color: var(--robotic-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.loginLink a:hover {
+  text-decoration: underline;
+}
+
+.successMessage {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  color: #22c55e;
+}
+
+.continueButton {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--robotic-blue) 0%, var(--circuit-green) 100%);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.continueButton:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem 0;
+  }
+  
+  .stepContainer {
+    padding: 1.5rem;
+  }
+}

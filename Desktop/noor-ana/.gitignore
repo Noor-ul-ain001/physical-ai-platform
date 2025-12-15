@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+venv/
+.env
+.env.local
+.venv.local
+.nyc_output
+coverage/
+
+# Docusaurus
+.build/
+.docusaurus/
+/dist/
+/docs-api/
+
+# FastAPI
+*.log
+*.pid
+logs/
+
+# Database
+*.db
+*.db-journal
+migrations/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.production.local
+
+# Secrets
+*.key
+*.pem
+*.crt
+secrets/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+nul

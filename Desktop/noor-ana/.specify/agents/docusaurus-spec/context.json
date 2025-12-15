@@ -1,0 +1,41 @@
+{
+  "agentId": "docusaurus-spec",
+  "version": "1.0.0",
+  "status": "active",
+  "created": "2025-12-15",
+  "lastUpdated": "2025-12-15",
+  "configuration": {
+    "defaultDifficulty": "intermediate",
+    "targetAudience": "undergraduate-graduate",
+    "codeStyle": "pythonic",
+    "componentLibrary": "@site/src/components/",
+    "defaultInteractive": "chatbot-trigger"
+  },
+  "qualityGates": {
+    "mdxValidation": true,
+    "codeSyntaxCheck": true,
+    "headingHierarchyCheck": true,
+    "componentImportValidation": true,
+    "embeddedIntelligenceAlignment": true
+  },
+  "metrics": {
+    "usageCount": 0,
+    "successRate": null,
+    "averageGenerationTime": null,
+    "userSatisfaction": null
+  },
+  "dependencies": {
+    "docusaurusVersion": "3.x",
+    "reactVersion": "18.x",
+    "requiredPlugins": [
+      "@docusaurus/plugin-content-docs",
+      "@docusaurus/plugin-content-blog"
+    ]
+  },
+  "knowledgeSources": [
+    "Docusaurus documentation",
+    "MDX specification",
+    "Educational content design principles",
+    "Project constitution (Article I, II, IV)"
+  ]
+}

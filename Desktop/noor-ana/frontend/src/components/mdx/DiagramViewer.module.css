@@ -1,0 +1,61 @@
+.diagramContainer {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.diagramWrapper {
+  display: inline-block;
+  position: relative;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.diagramImage {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transition: opacity 0.3s;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.loadingIndicator, 
+.errorIndicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  color: #718096;
+  font-style: italic;
+}
+
+.errorIndicator {
+  color: #e53e3e;
+  background-color: #fef2f2;
+  border-color: #fed7d7;
+}
+
+.caption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #718096;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .diagramContainer {
+    margin: 1.5rem 0;
+  }
+  
+  .diagramWrapper {
+    width: 100% !important;
+  }
+}

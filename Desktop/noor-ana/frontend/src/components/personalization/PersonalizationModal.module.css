@@ -1,0 +1,220 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalHeader h2 {
+  margin: 0;
+  color: var(--ifm-color-primary);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #718096;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.closeButton:hover {
+  background-color: #f7fafc;
+  color: #4a5568;
+}
+
+.modalBody {
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section h3 {
+  margin-top: 0;
+  color: var(--robotic-blue);
+  margin-bottom: 0.5rem;
+}
+
+.sectionDescription {
+  color: #718096;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.optionList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.option:hover {
+  border-color: var(--robotic-blue);
+}
+
+.optionSelected {
+  border-color: var(--robotic-blue);
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.optionInput {
+  margin-right: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.optionContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.optionLabel {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.optionDescription {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.checkboxList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checkboxOption {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.checkboxOption:hover {
+  border-color: var(--robotic-blue);
+}
+
+.checkboxSelected {
+  border-color: var(--robotic-blue);
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.checkboxInput {
+  margin-right: 0.75rem;
+}
+
+.checkboxLabel {
+  font-weight: 500;
+}
+
+.modalFooter {
+  padding: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.cancelButton, .saveButton {
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.cancelButton {
+  background: white;
+  border: 1px solid #e2e8f0;
+  color: #4a5568;
+}
+
+.cancelButton:hover {
+  background: #f7fafc;
+}
+
+.saveButton {
+  background: linear-gradient(90deg, var(--robotic-blue) 0%, var(--circuit-green) 100%);
+  color: white;
+  border: none;
+}
+
+.saveButton:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.saveButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+  }
+  
+  .modalHeader, .modalBody, .modalFooter {
+    padding: 1rem;
+  }
+  
+  .option, .checkboxOption {
+    padding: 0.75rem;
+  }
+}

@@ -1,0 +1,27 @@
+.bookmarkButton {
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  font-size: 1.2em;
+  transition: transform 0.2s ease;
+}
+
+.icon.bookmarked {
+  color: #fbbf24; /* Yellow color for bookmarked state */
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .bookmarkButton {
+    min-width: auto;
+    padding: 0 0.75rem !important;
+  }
+  
+  .bookmarkButton span:last-child {
+    display: none;
+  }
+}

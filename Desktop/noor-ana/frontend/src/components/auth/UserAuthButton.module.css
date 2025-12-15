@@ -1,0 +1,129 @@
+.authButtonContainer {
+  position: relative;
+}
+
+.loggedInContainer {
+  position: relative;
+}
+
+.userButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: #4a5568;
+  transition: all 0.2s;
+}
+
+.userButton:hover {
+  border-color: var(--robotic-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.userInitial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--robotic-blue) 0%, var(--circuit-green) 100%);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.dropdownArrow {
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+}
+
+.userButton[aria-expanded="true"] .dropdownArrow {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  width: 16rem;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.menuItem {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #4a5568;
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s;
+}
+
+.menuItem:hover {
+  background-color: #f8fafc;
+}
+
+.menuItem:last-child {
+  border-bottom: none;
+}
+
+.logoutButton {
+  color: #e53e3e;
+  text-align: left;
+  border-top: 1px solid #e2e8f0;
+}
+
+.loggedOutContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.authButton {
+  border: none;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.loginButton {
+  background: white;
+  color: var(--robotic-blue);
+  border: 1px solid var(--robotic-blue);
+}
+
+.loginButton:hover {
+  background: #eff6ff;
+}
+
+.signupButton {
+  background: linear-gradient(90deg, var(--robotic-blue) 0%, var(--circuit-green) 100%);
+  color: white;
+}
+
+.signupButton:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .dropdownMenu {
+    width: 14rem;
+  }
+  
+  .authButton {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}

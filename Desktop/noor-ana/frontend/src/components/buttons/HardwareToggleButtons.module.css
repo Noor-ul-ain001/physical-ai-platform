@@ -1,0 +1,15 @@
+.toggleContainer {
+  display: flex;
+  gap: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  background-color: #f8fafc;
+}
+
+@media (max-width: 768px) {
+  .toggleContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

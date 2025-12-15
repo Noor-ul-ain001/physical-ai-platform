@@ -1,0 +1,432 @@
+/* ProfileQuestionnaire.module.css */
+
+.questionnaire {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background: #141D2F;
+  border-radius: 1rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.questionnaire h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(90deg, #4FA675, #67C791);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+  color: #b0b8c9;
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Progress Steps */
+.stepProgress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.stepProgress::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 2rem;
+  right: 2rem;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+
+.stepIndicator {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.step.active .stepIndicator {
+  background: #4FA675;
+  color: white;
+  border-color: #4FA675;
+  box-shadow: 0 0 0 4px rgba(79, 166, 117, 0.2);
+}
+
+.step.completed .stepIndicator {
+  background: #4FA675;
+  color: white;
+}
+
+.stepLabel {
+  font-size: 0.875rem;
+  color: #b0b8c9;
+  text-align: center;
+}
+
+.step.active .stepLabel {
+  color: #4FA675;
+  font-weight: 600;
+}
+
+/* Step Content */
+.stepContent {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.stepContent h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  color: #fff;
+}
+
+.stepDescription {
+  color: #b0b8c9;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.optionList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.option:hover {
+  border-color: rgba(79, 166, 117, 0.3);
+  background: rgba(79, 166, 117, 0.05);
+  transform: translateY(-2px);
+}
+
+.optionSelected {
+  border-color: #4FA675;
+  background: linear-gradient(135deg, rgba(79, 166, 117, 0.1), rgba(79, 166, 117, 0.05));
+  box-shadow: 0 0 0 1px #4FA675, 0 10px 20px rgba(79, 166, 117, 0.15);
+}
+
+.optionSelected::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4FA675, #67C791);
+}
+
+.optionInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.optionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  padding-left: 0.5rem;
+}
+
+.optionLabel {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.optionDescription {
+  font-size: 0.95rem;
+  color: #b0b8c9;
+}
+
+/* Checkbox List */
+.checkboxList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.checkboxOption {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.checkboxOption:hover {
+  border-color: rgba(79, 166, 117, 0.3);
+  background: rgba(79, 166, 117, 0.05);
+  transform: translateY(-2px);
+}
+
+.checkboxInput {
+  margin-right: 0.75rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.375rem;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.checkboxInput:checked {
+  background: #4FA675;
+  border-color: #4FA675;
+}
+
+.checkboxInput:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.checkboxLabel {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.checkboxOption:hover .checkboxLabel {
+  color: #4FA675;
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navButton {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #3b3f4d 0%, #2a2e3a 100%);
+  color: #b0b8c9;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.navButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4FA675 0%, #3E8A5F 100%);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(79, 166, 117, 0.3);
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submitButton {
+  padding: 0.875rem 2.5rem;
+  background: linear-gradient(135deg, #4FA675 0%, #3E8A5F 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.submitButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(79, 166, 117, 0.3);
+}
+
+.submitButton:hover::before {
+  opacity: 1;
+}
+
+/* Animation for step transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stepContent {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .questionnaire {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .checkboxList {
+    grid-template-columns: 1fr;
+  }
+
+  .option,
+  .checkboxOption {
+    padding: 1rem;
+  }
+
+  .navigation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .navButton,
+  .submitButton {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navButton:first-child {
+    order: 2;
+  }
+
+  .navButton:last-child,
+  .submitButton {
+    order: 1;
+  }
+
+  .stepProgress::before {
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .stepIndicator {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Loading spinner for future use */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 0.5rem;
+}
+
+/* Tooltip for additional info */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.5rem;
+  cursor: help;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2a2e3a;
+  color: #b0b8c9;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+  visibility: visible;
+  bottom: calc(100% + 5px);
+}

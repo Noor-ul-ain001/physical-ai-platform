@@ -1,0 +1,85 @@
+{
+  "agents": [
+    {
+      "id": "docusaurus-content-agent",
+      "name": "DocusaurusContentAgent",
+      "description": "Generates MDX chapters for the Physical AI & Humanoid Robotics curriculum",
+      "version": "1.0.0",
+      "skills": [
+        "mdx-generation",
+        "docusaurus-formatting",
+        "curriculum-standards",
+        "code-examples",
+        "interactive-components"
+      ],
+      "endpoints": [
+        "/agents/docusaurus-content"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "rag-integration-agent",
+      "name": "RAGIntegrationAgent",
+      "description": "Implements retrieval-augmented generation features and optimizes search",
+      "version": "1.0.0", 
+      "skills": [
+        "retrieval-optimization",
+        "embedding-generation",
+        "semantic-search",
+        "hallucination-prevention"
+      ],
+      "endpoints": [
+        "/agents/rag-integration"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "personalization-agent",
+      "name": "PersonalizationAgent",
+      "description": "Creates and manages content personalization rules based on user profiles",
+      "version": "1.0.0",
+      "skills": [
+        "profile-analysis",
+        "content-adaptation",
+        "rule-generation",
+        "user-preference-matching"
+      ],
+      "endpoints": [
+        "/agents/personalization"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "ui-component-agent",
+      "name": "UIComponentAgent",
+      "description": "Generates React components for the educational platform",
+      "version": "1.0.0",
+      "skills": [
+        "react-component-generation",
+        "typescript-typing",
+        "css-styling",
+        "accessibility-compliance"
+      ],
+      "endpoints": [
+        "/agents/ui-component"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "devops-agent",
+      "name": "DevOpsAgent",
+      "description": "Manages deployment configurations and CI/CD pipelines",
+      "version": "1.0.0",
+      "skills": [
+        "deployment-configuration",
+        "ci-cd-pipeline",
+        "infrastructure-as-code",
+        "monitoring-setup"
+      ],
+      "endpoints": [
+        "/agents/devops"
+      ],
+      "status": "active"
+    }
+  ]
+}

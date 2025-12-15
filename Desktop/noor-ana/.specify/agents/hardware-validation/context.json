@@ -1,0 +1,31 @@
+{
+  "agentId": "hardware-validation",
+  "version": "0.1.0",
+  "status": "draft",
+  "created": "2025-12-15",
+  "lastUpdated": "2025-12-15",
+  "configuration": {
+    "pricingSources": ["Amazon", "Adafruit", "SparkFun", "AliExpress"],
+    "defaultBudget": "medium",
+    "defaultRegion": "US"
+  },
+  "qualityGates": {
+    "priceAccuracy": "within 10% of real prices",
+    "instructionCompleteness": "all steps present",
+    "alternativesProvided": "at least 2 per expensive component"
+  },
+  "developmentStatus": {
+    "promptComplete": false,
+    "skillsDefined": false,
+    "testsCreated": false,
+    "realWorldValidation": false
+  },
+  "nextSteps": [
+    "Complete prompt.md with full execution protocol",
+    "Define all skills in skills.md with contracts",
+    "Create test scenarios in tests.md",
+    "Implement price verification system",
+    "Test with 5+ real hardware setups",
+    "Update status to 'active' after validation"
+  ]
+}

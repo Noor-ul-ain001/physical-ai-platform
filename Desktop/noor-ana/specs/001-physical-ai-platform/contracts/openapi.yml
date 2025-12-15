@@ -1,0 +1,431 @@
+openapi: 3.1.0
+info:
+  title: Physical AI & Humanoid Robotics Platform API
+  version: 1.0.0
+  description: Backend API for educational platform with RAG chatbot, personalization, and translation
+
+servers:
+  - url: https://api.physical-ai-platform.com
+    description: Production
+  - url: http://localhost:8000
+    description: Local development
+
+paths:
+  /api/chat:
+    post:
+      summary: Send message to RAG chatbot (full book context)
+      operationId: chatFullContext
+      tags: [Chat]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+        '429':
+          description: Rate limit exceeded
+        '500':
+          description: Server error (hallucination detected, no sources found)
+
+  /api/chat/selective:
+    post:
+      summary: Send message to RAG chatbot (selected text only)
+      operationId: chatSelectiveContext
+      tags: [Chat]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectiveChatRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SelectiveChatResponse'
+
+  /api/users/signup:
+    post:
+      summary: Create new user account
+      operationId: signup
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 8
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+  /api/users/me:
+    get:
+      summary: Get current user profile
+      operationId: getCurrentUser
+      tags: [Users]
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+    patch:
+      summary: Update user profile
+      operationId: updateUserProfile
+      tags: [Users]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileUpdateRequest'
+      responses:
+        '200':
+          description: Profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+  /api/content/personalize:
+    post:
+      summary: Get personalization rules for chapter
+      operationId: personalizeContent
+      tags: [Personalization]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [chapterId]
+              properties:
+                chapterId:
+                  type: string
+                  example: "module-1/week-1-introduction"
+      responses:
+        '200':
+          description: Personalization rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalizationRules'
+
+  /api/translate:
+    post:
+      summary: Translate chapter to Urdu
+      operationId: translateChapter
+      tags: [Translation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [chapterId, targetLanguage]
+              properties:
+                chapterId:
+                  type: string
+                targetLanguage:
+                  type: string
+                  enum: [ur]
+      responses:
+        '200':
+          description: Translated content
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  translatedContent:
+                    type: string
+                  preservedCodeBlocks:
+                    type: array
+                    items:
+                      type: string
+
+  /api/bookmarks:
+    get:
+      summary: Get user bookmarks
+      operationId: getBookmarks
+      tags: [Progress]
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of bookmarks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bookmark'
+
+    post:
+      summary: Create bookmark
+      operationId: createBookmark
+      tags: [Progress]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookmarkRequest'
+      responses:
+        '201':
+          description: Bookmark created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bookmark'
+
+  /api/progress:
+    get:
+      summary: Get user progress across all chapters
+      operationId: getProgress
+      tags: [Progress]
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Progress data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChapterProgress'
+
+    post:
+      summary: Update chapter progress
+      operationId: updateProgress
+      tags: [Progress]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [chapterId, completionPercentage]
+              properties:
+                chapterId:
+                  type: string
+                completionPercentage:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+                timeSpentSeconds:
+                  type: integer
+      responses:
+        '200':
+          description: Progress updated
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+  schemas:
+    ChatRequest:
+      type: object
+      required: [query]
+      properties:
+        query:
+          type: string
+          maxLength: 1000
+        sessionId:
+          type: string
+          format: uuid
+        topK:
+          type: integer
+          default: 5
+
+    ChatResponse:
+      type: object
+      properties:
+        answer:
+          type: string
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citation'
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+        retrievalTimeMs:
+          type: integer
+
+    SelectiveChatRequest:
+      type: object
+      required: [query, selectedText]
+      properties:
+        query:
+          type: string
+        selectedText:
+          type: string
+        pageContext:
+          type: string
+
+    SelectiveChatResponse:
+      type: object
+      properties:
+        answer:
+          type: string
+        mode:
+          type: string
+          enum: [selective]
+        sourcedFromSelection:
+          type: boolean
+        insufficientContext:
+          type: boolean
+        suggestions:
+          type: array
+          items:
+            type: string
+
+    Citation:
+      type: object
+      properties:
+        source:
+          type: string
+        excerpt:
+          type: string
+        similarity:
+          type: number
+
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+        hardwareProfile:
+          $ref: '#/components/schemas/HardwareProfile'
+        learningGoals:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    HardwareProfile:
+      type: object
+      properties:
+        gpu:
+          type: string
+          enum: [None, Integrated, "RTX 3060", "RTX 4080", A100]
+        roboticsKit:
+          type: string
+          enum: [None, "Jetson Orin", "Full Robot"]
+        experienceLevel:
+          type: string
+          enum: [Beginner, Intermediate, Advanced]
+
+    ProfileUpdateRequest:
+      type: object
+      properties:
+        hardwareProfile:
+          $ref: '#/components/schemas/HardwareProfile'
+        learningGoals:
+          type: array
+          items:
+            type: string
+        accessibilityPrefs:
+          type: object
+
+    PersonalizationRules:
+      type: object
+      properties:
+        showSections:
+          type: array
+          items:
+            type: string
+        hideSections:
+          type: array
+          items:
+            type: string
+        codeComplexity:
+          type: string
+          enum: [simple, standard, advanced]
+        hardwareInstructions:
+          type: string
+          enum: [cloud, jetson, full_robot]
+
+    Bookmark:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        chapterId:
+          type: string
+        sectionId:
+          type: string
+        notes:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    BookmarkRequest:
+      type: object
+      required: [chapterId]
+      properties:
+        chapterId:
+          type: string
+        sectionId:
+          type: string
+        notes:
+          type: string
+
+    ChapterProgress:
+      type: object
+      properties:
+        chapterId:
+          type: string
+        completionPercentage:
+          type: integer
+        lastAccessed:
+          type: string
+          format: date-time
+        timeSpentSeconds:
+          type: integer
